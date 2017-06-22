@@ -19,6 +19,10 @@ class FunctionFactory
      */
     public static function create($platformName, $functionName, array $parameters)
     {
+        if (strtolower($platformName) === "mssql") {
+            $platformName = 'Postgresql';
+        }
+        
         $className = __NAMESPACE__
             . '\\Platform\\Functions\\'
             . Inflector::classify(strtolower($platformName))
